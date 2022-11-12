@@ -1,0 +1,14 @@
+query getPokemonList(
+  $limit: Int
+  $order_by: [pokemon_v2_pokemon_order_by!]
+  $where: pokemon_v2_pokemon_bool_exp
+) {
+  pokemon_v2_pokemon(limit: $limit, order_by: $order_by, where: $where) {
+    id
+    name
+    base_experience
+    pokemon_v2_pokemonsprites {
+      id
+    }
+  }
+}
