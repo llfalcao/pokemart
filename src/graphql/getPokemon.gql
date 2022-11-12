@@ -6,9 +6,11 @@ query getPokemonList(
   pokemon_v2_pokemon(limit: $limit, order_by: $order_by, where: $where) {
     id
     name
-    base_experience
     pokemon_v2_pokemonsprites {
-      id
+      sprites
+    }
+    pokemon_v2_pokemonstats {
+      base_stat
     }
   }
 }
