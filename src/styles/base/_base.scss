@@ -12,9 +12,21 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+body,
+a,
+button {
+  font-family: "Fira Sans", sans-serif;
+}
+
 a {
   text-decoration: none;
   color: inherit;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
 ul {

@@ -35,7 +35,7 @@ const Cart = () => {
 
   return (
     <div className="cart">
-      <h1 className="cart__title">PokéBag</h1>
+      <h3 className="cart__title">PokéBag</h3>
       <ul className="cart__list">
         {cart.items?.map((item) => (
           <CartItem key={item.id} pokemon={item} removeItem={removeItem} />

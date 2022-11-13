@@ -1,8 +1,11 @@
 import { useEffect, useState } from "react";
+
 import { CartItem as CartItemModel } from "../../typings/Cart";
 import ProductImage from "../ProductImage/ProductImage";
 import ProductName from "../ProductName/ProductName";
 import ProductPrice from "../ProductPrice/ProductPrice";
+
+import { ReactComponent as Close } from "../../assets/icons/Close.svg";
 
 interface Props {
   pokemon: CartItemModel;
@@ -21,7 +24,7 @@ const CartItem = ({ pokemon, removeItem }: Props) => {
 
   return (
     <li className="cartItem">
-      <div>
+      <div className="cartItem__linkContainer">
         <a className="cartItem__link" href="#!">
           <ProductImage
             sprites={JSON.parse(images)}
@@ -31,8 +34,10 @@ const CartItem = ({ pokemon, removeItem }: Props) => {
               image: "cartItem__image",
             }}
           />
-          <ProductName name={name} className="cartItem__name" />
-          <ProductPrice price={itemSubtotal} className="cartItem__price" />
+          <div className="cartItem__namePriceContainer">
+            <ProductName name={name} className="cartItem__name" />
+            <ProductPrice price={itemSubtotal} className="cartItem__price" />
+          </div>
         </a>
         <div className="cartItem__quantitySelector">
           <button
@@ -51,14 +56,14 @@ const CartItem = ({ pokemon, removeItem }: Props) => {
             +
           </button>
         </div>
-        <button
-          className="cartItem__removeBtn"
-          type="button"
-          onClick={() => removeItem(id)}
-        >
-          Remove ID #{id}
-        </button>
       </div>
+      <button
+        className="cartItem__removeBtn"
+        type="button"
+        onClick={() => removeItem(id)}
+      >
+        <Close />
+      </button>
     </li>
   );
 };
