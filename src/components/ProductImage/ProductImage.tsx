@@ -1,18 +1,24 @@
+import { Sprite } from "../../typings/Pokemon";
+import { getImages } from "../../utils/utils";
+
 interface Props {
-  sprites: string;
+  sprites: Sprite[];
+  alt: string;
+  className: {
+    wrapper: string;
+    image: string;
+  };
 }
 
-const ProductImage = ({ sprites }: Props) => {
-  const images = JSON.parse(sprites);
-  const defaultImage = images.other.home.front_default ?? "";
-  const hoverImage = images.other.home.front_shiny ?? "";
+const ProductImage = ({ sprites, alt, className }: Props) => {
+  const { defaultImage, hoverImage } = getImages(sprites);
 
   return (
-    <div className="product__imageWrapper">
+    <div className={className.wrapper}>
       <img
-        className="product__image"
+        className={className.image}
         src={defaultImage}
-        alt=""
+        alt={alt}
         width={135}
         height={135}
         loading="lazy"

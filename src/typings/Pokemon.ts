@@ -1,4 +1,4 @@
-interface Sprite {
+export interface Sprite {
   sprites: string;
 }
 

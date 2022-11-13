@@ -1,6 +1,10 @@
-import Cart from "../../typings/Cart";
 import Pokemon from "../../typings/Pokemon";
 import ProductImage from "../ProductImage/ProductImage";
+import Cart from "../../typings/Cart";
+import ProductName from "../ProductName/ProductName";
+import ProductPrice from "../ProductPrice/ProductPrice";
+
+import { getPrice } from "../../utils/utils";
 
 interface Props {
   pokemon: Pokemon;
@@ -9,21 +13,22 @@ interface Props {
 const ShelfItem = ({ pokemon }: Props) => {
   const {
     id,
-    name: lowerName,
+    name,
     pokemon_v2_pokemonstats: stats,
-    pokemon_v2_pokemonsprites,
+    pokemon_v2_pokemonsprites: sprites,
   } = pokemon;
 
-  const name = lowerName.substring(0, 1).toUpperCase() + lowerName.slice(1);
-
-  const price = (
-    (stats.reduce((sum, current) => sum + current.base_stat, 0) /
-      stats.length) *
-    10
-  ).toFixed(2);
-
   const addToCart = () => {
-    const product = { id, name, price, quantity: 1 };
+    const product = {
+      id,
+      name,
+      price: getPrice(stats),
+      images: JSON.stringify(sprites).replace(
+        '"__typename":"pokemon_v2_pokemonsprites",',
+        "",
+      ),
+      quantity: 1,
+    };
 
     const cart: Cart = JSON.parse(
       localStorage.getItem("cart") ?? '{"items": []}',
@@ -32,22 +37,30 @@ const ShelfItem = ({ pokemon }: Props) => {
     const itemIndex = cart.items.findIndex((item) => item.id === id);
 
     if (itemIndex < 0) {
-      cart.items.unshift({ id, name, price, quantity: 1 });
+      cart.items.unshift(product);
     } else {
       product.quantity += cart.items[itemIndex].quantity;
       cart.items[itemIndex] = product;
     }
 
     localStorage.setItem("cart", JSON.stringify(cart));
+    window.dispatchEvent(new Event("storage"));
   };
 
   return (
     <li className="product">
       <div>
         <a className="product__link" href="#!">
-          <ProductImage sprites={pokemon_v2_pokemonsprites[0].sprites} />
-          <p className="product__name">{name}</p>
-          <p className="product__price">{price}</p>
+          <ProductImage
+            sprites={sprites}
+            alt={name}
+            className={{
+              wrapper: "product__imageWrapper",
+              image: "product__image",
+            }}
+          />
+          <ProductName name={name} className="product__name" />
+          <ProductPrice stats={stats} className="product__price" />
         </a>
         <button className="product__buyBtn" type="button" onClick={addToCart}>
           Add to cart
