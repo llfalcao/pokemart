@@ -4,11 +4,14 @@ import Shelf from "./components/Shelf/Shelf";
 const App = () => {
   return (
     <div className="App">
-      <div>
-        <h1>PokéStore</h1>
-        <Shelf quantity={2} />
+      <header></header>
+      <div className="content">
+        <div className="main">
+          <h1>PokéStore</h1>
+          <Shelf quantity={2} />
+        </div>
+        <Cart />
       </div>
-      <Cart />
     </div>
   );
 };
