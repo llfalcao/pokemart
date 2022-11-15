@@ -8,7 +8,7 @@ const App = () => {
       <div className="content">
         <div className="main">
           <h1>PokéStore</h1>
-          <Shelf quantity={2} />
+          <Shelf quantity={18} />
         </div>
         <Cart />
       </div>

@@ -49,23 +49,21 @@ const ShelfItem = ({ pokemon }: Props) => {
 
   return (
     <li className="product">
-      <div>
-        <a className="product__link" href="#!">
-          <ProductImage
-            sprites={sprites}
-            alt={name}
-            className={{
-              wrapper: "product__imageWrapper",
-              image: "product__image",
-            }}
-          />
-          <ProductName name={name} className="product__name" />
-          <ProductPrice stats={stats} className="product__price" />
-        </a>
-        <button className="product__buyBtn" type="button" onClick={addToCart}>
-          Add to cart
-        </button>
-      </div>
+      <a className="product__link" href="#!">
+        <ProductImage
+          sprites={sprites}
+          alt={name}
+          className={{
+            wrapper: "product__imageWrapper",
+            image: "product__image",
+          }}
+        />
+        <ProductName name={name} className="product__name" />
+        <ProductPrice stats={stats} className="product__price" />
+      </a>
+      <button className="product__buyBtn" type="button" onClick={addToCart}>
+        Add to cart
+      </button>
     </li>
   );
 };
