@@ -9,6 +9,7 @@ const Cart = () => {
   const [subtotal, setSubtotal] = useState<string>("0.00");
   const [shipping, setShipping] = useState<string>("0.00");
 
+  // Handle cart items
   useEffect(() => {
     const loadCart = () => {
       const cartObject: CartModel = JSON.parse(
@@ -24,13 +25,19 @@ const Cart = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  // Handle cart summary
   useEffect(() => {
     setSubtotal(
       cart.items
         .reduce((sum, current) => sum + parseFloat(current.price), 0)
         .toFixed(2),
     );
-    setShipping((Math.random() * 100).toFixed(2));
+
+    if (cart.items.length === 0) {
+      setShipping("0.00");
+    } else {
+      setShipping((Math.random() * 100).toFixed(2));
+    }
   }, [cart]);
 
   const removeItem = (id: number) => {
@@ -67,14 +74,16 @@ const Cart = () => {
         <li className="cart__summaryItem">
           <span>Shipping</span>
           <div className="cart__dots"></div>
-          {shipping === "0.00" ? (
+          {cart.items.length > 0 && shipping === "0.00" ? (
             <span className="cart__summaryValue">"Free"</span>
           ) : (
             <ProductPrice price={shipping} className="cart__summaryValue" />
           )}
         </li>
         <li className="cart__summaryItem">
-          <span>Total</span>
+          <span>
+            <strong>Total</strong>
+          </span>
           <div className="cart__dots"></div>
           <ProductPrice price={getTotal()} className="cart__summaryValue" />
         </li>
