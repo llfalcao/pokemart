@@ -20,7 +20,9 @@ const CartItem = ({ pokemon, removeItem }: Props) => {
   useEffect(() => setAmount(quantity), [quantity]);
 
   const increment = () => setAmount(amount + 1);
-  const decrement = () => setAmount(amount - 1);
+  const decrement = () => {
+    amount === 1 ? removeItem(pokemon.id) : setAmount(amount - 1);
+  };
 
   return (
     <li className="cartItem">

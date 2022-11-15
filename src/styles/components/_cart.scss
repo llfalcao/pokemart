@@ -5,6 +5,9 @@
   min-width: 280px;
   border-left: 1px solid #c9c9c9;
   height: 100vh;
+  position: sticky;
+  top: 0;
+  right: 0;
 }
 
 .cart__title {
@@ -17,6 +20,8 @@
 
 .cart__list {
   height: 100%;
+  margin: 0 0 10px 0;
+  overflow-y: auto;
 }
 
 .cartItem {
@@ -68,6 +73,27 @@
   }
 }
 
+.cart__summary {
+  padding: 20px 0;
+}
+
+.cart__summaryItem {
+  display: flex;
+  justify-content: space-between;
+  margin: 4px 0;
+}
+
+.cart__dots {
+  border-bottom: dotted 3px #d7d7d7;
+  flex-grow: 1;
+  position: relative;
+  bottom: 5px;
+  margin: 0 5px;
+}
+
 .cart__checkoutBtn {
   padding: 10px;
+  background: #019325;
+  color: #fff;
+  font-weight: 500;
 }
