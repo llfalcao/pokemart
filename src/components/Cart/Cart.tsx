@@ -4,26 +4,14 @@ import CartModel from "../../typings/Cart";
 import CartItem from "../CartItem/CartItem";
 import ProductPrice from "../ProductPrice/ProductPrice";
 
-const Cart = () => {
-  const [cart, setCart] = useState<CartModel>({ items: [] });
+interface Props {
+  cart: CartModel;
+  setCart: (value: React.SetStateAction<CartModel>) => void;
+}
+
+const Cart = ({ cart, setCart }: Props) => {
   const [subtotal, setSubtotal] = useState<string>("0.00");
   const [shipping, setShipping] = useState<string>("0.00");
-
-  // Handle cart items
-  useEffect(() => {
-    const loadCart = () => {
-      const cartObject: CartModel = JSON.parse(
-        localStorage.getItem("cart") ?? '{"items": []}',
-      );
-
-      setCart(cartObject);
-    };
-
-    loadCart();
-    window.addEventListener("storage", loadCart);
-    return () => window.removeEventListener("storage", loadCart);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   // Handle cart summary
   useEffect(() => {
