@@ -10,9 +10,10 @@ export const getPrice = (stats: Stat[]) => {
 
 export const getImages = (spriteArray: Sprite[]) => {
   const images = JSON.parse(spriteArray[0].sprites);
-  const backupImage = images.other["official-artwork"].front_default;
-  const defaultImage = images.other.home.front_default ?? backupImage;
-  const hoverImage = images.other.home.front_shiny ?? backupImage;
+  const fallback =
+    images.other["official-artwork"].front_default ?? "/unknown-pokemon.webp";
+  const defaultImage = images.other.home.front_default ?? fallback;
+  const hoverImage = images.other.home.front_shiny ?? fallback;
 
   return { defaultImage, hoverImage };
 };

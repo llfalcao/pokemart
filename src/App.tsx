@@ -46,7 +46,7 @@ const App = () => {
       />
       <div className="content">
         <div className="main">
-          <Shelf quantity={4} query={query} />
+          <Shelf quantity={10} query={query} />
         </div>
         <Cart cart={cart} setCart={setCart} />
       </div>

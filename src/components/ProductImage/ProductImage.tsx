@@ -18,13 +18,16 @@ const ProductImage = ({ sprites, alt, className }: Props) => {
       <img
         className={className.image}
         src={defaultImage}
-        onError={(event) => (event.currentTarget.src = "/unknown-pokemon.webp")}
         alt={alt}
         width={135}
         height={135}
         loading="lazy"
         onMouseEnter={(event) => (event.currentTarget.src = hoverImage)}
         onMouseLeave={(event) => (event.currentTarget.src = defaultImage)}
+        onError={(event) => {
+          event.currentTarget.onerror = null;
+          event.currentTarget.src = "/unknown-pokemon.webp";
+        }}
       />
     </div>
   );
