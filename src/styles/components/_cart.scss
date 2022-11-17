@@ -4,9 +4,9 @@
   padding: 10px;
   min-width: 280px;
   border-left: 1px solid #c9c9c9;
-  height: 100vh;
+  height: calc(100vh - 70px);
   position: sticky;
-  top: 0;
+  top: 70px;
   right: 0;
 }
 
