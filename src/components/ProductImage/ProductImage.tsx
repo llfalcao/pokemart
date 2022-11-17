@@ -18,6 +18,7 @@ const ProductImage = ({ sprites, alt, className }: Props) => {
       <img
         className={className.image}
         src={defaultImage}
+        onError={(event) => (event.currentTarget.src = "/unknown-pokemon.webp")}
         alt={alt}
         width={135}
         height={135}

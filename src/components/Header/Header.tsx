@@ -5,16 +5,17 @@ interface Props {
   search?: string;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   cartItems: number;
+  submit?: React.FormEventHandler<HTMLFormElement>;
 }
 
-const Header = ({ search, onChange, cartItems }: Props) => {
+const Header = ({ search, onChange, cartItems, submit }: Props) => {
   return (
     <header className="header">
       <div className="header__logo">
         <img src="/logo.webp" alt="Logo" width={32} height={32} />
         <p>PokéMart</p>
       </div>
-      <form className="search" onSubmit={(event) => event.preventDefault()}>
+      <form className="search" onSubmit={submit}>
         <fieldset>
           <input
             type="search"

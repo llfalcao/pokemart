@@ -10,8 +10,9 @@ export const getPrice = (stats: Stat[]) => {
 
 export const getImages = (spriteArray: Sprite[]) => {
   const images = JSON.parse(spriteArray[0].sprites);
-  const defaultImage = images.other.home.front_default ?? "";
-  const hoverImage = images.other.home.front_shiny ?? "";
+  const backupImage = images.other["official-artwork"].front_default;
+  const defaultImage = images.other.home.front_default ?? backupImage;
+  const hoverImage = images.other.home.front_shiny ?? backupImage;
 
   return { defaultImage, hoverImage };
 };

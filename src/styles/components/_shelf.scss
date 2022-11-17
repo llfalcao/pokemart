@@ -13,15 +13,29 @@
   padding: 10px;
   transform: translate3d(0, 0, 0);
   transition: 0.15s ease-out;
+  min-width: 170px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 
   &:hover {
     transform: translate3d(0, -5px, 0);
   }
 }
 
+.product__image {
+  border-radius: 4px;
+}
+
 .product__name,
 .product__price {
   text-align: center;
+}
+
+.product__name {
+  word-break: break-all;
+  max-width: 155px;
 }
 
 .currency {

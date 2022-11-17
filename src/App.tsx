@@ -7,6 +7,7 @@ import CartModel from "./typings/Cart";
 
 const App = () => {
   const [search, setSearch] = useState<string>("");
+  const [query, setQuery] = useState<string>("");
   const [cart, setCart] = useState<CartModel>({ items: [] });
 
   // Handle cart items
@@ -29,17 +30,23 @@ const App = () => {
     setSearch(event.target.value);
   };
 
+  const handleSearchSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (!search) return;
+    setQuery(search);
+  };
+
   return (
     <div className="App">
       <Header
         search={search}
         onChange={handleSearchChange}
         cartItems={cart.items.length}
+        submit={handleSearchSubmit}
       />
       <div className="content">
         <div className="main">
-          <h1>PokéStore</h1>
-          <Shelf quantity={4} />
+          <Shelf quantity={4} query={query} />
         </div>
         <Cart cart={cart} setCart={setCart} />
       </div>
