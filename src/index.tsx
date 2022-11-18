@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import App from "./App";
 import "./styles/index.scss";
@@ -18,13 +17,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <ApolloProvider client={client}>
-      <Router>
-        <Routes>
-          <Route path="/">
-            <Route index element={<App />} />
-          </Route>
-        </Routes>
-      </Router>
+      <App />
     </ApolloProvider>
   </React.StrictMode>,
 );

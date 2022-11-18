@@ -1,6 +1,4 @@
-import { useEffect, useState } from "react";
-
-import { CartItem as CartItemModel } from "../../typings/Cart";
+import CartModel, { CartItem as CartItemModel } from "../../typings/Cart";
 import ProductImage from "../ProductImage/ProductImage";
 import ProductName from "../ProductName/ProductName";
 import ProductPrice from "../ProductPrice/ProductPrice";
@@ -9,20 +7,42 @@ import { ReactComponent as Close } from "../../assets/icons/Close.svg";
 
 interface Props {
   pokemon: CartItemModel;
-  removeItem: (id: number) => void;
 }
 
-const CartItem = ({ pokemon, removeItem }: Props) => {
+const CartItem = ({ pokemon }: Props) => {
   const { id, name, price, images, quantity } = pokemon;
-  const [amount, setAmount] = useState(quantity);
-  const itemSubtotal = (parseFloat(price) * amount).toFixed(2);
+  const itemSubtotal = (parseFloat(price) * quantity).toFixed(2);
 
-  useEffect(() => setAmount(quantity), [quantity]);
+  const getCart = (): CartModel =>
+    JSON.parse(localStorage.getItem("cart") ?? '{"items": []}');
 
-  const increment = () => setAmount(amount + 1);
-  const decrement = () => {
-    amount === 1 ? removeItem(pokemon.id) : setAmount(amount - 1);
+  const updateCart = (cartObject: CartModel) => {
+    localStorage.setItem("cart", JSON.stringify(cartObject));
+    window.dispatchEvent(new Event("storage"));
   };
+
+  const updateQuantity = (n: number) => {
+    const cartObject = getCart();
+    const newCart: CartModel = {
+      items: cartObject.items.map((item) =>
+        item.id === id ? { ...pokemon, quantity: pokemon.quantity + n } : item,
+      ),
+    };
+
+    updateCart(newCart);
+  };
+
+  const removeItem = () => {
+    const cartObject = getCart();
+    const newCart: CartModel = {
+      items: cartObject.items.filter((item) => item.id !== id),
+    };
+
+    updateCart(newCart);
+  };
+
+  const increment = () => updateQuantity(1);
+  const decrement = () => (quantity === 1 ? removeItem() : updateQuantity(-1));
 
   return (
     <li className="cartItem">
@@ -49,7 +69,7 @@ const CartItem = ({ pokemon, removeItem }: Props) => {
           >
             -
           </button>
-          <p className="cartItem__quantity">{amount}</p>
+          <p className="cartItem__quantity">{quantity}</p>
           <button
             className="cartItem__incrementBtn"
             type="button"
@@ -62,7 +82,7 @@ const CartItem = ({ pokemon, removeItem }: Props) => {
       <button
         className="cartItem__removeBtn"
         type="button"
-        onClick={() => removeItem(id)}
+        onClick={removeItem}
       >
         <Close />
       </button>
