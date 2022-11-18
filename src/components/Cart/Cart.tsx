@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 import CartModel from "../../typings/Cart";
 import CartItem from "../CartItem/CartItem";
@@ -7,9 +8,10 @@ import ProductPrice from "../ProductPrice/ProductPrice";
 interface Props {
   cart: CartModel;
   setCart: (value: React.SetStateAction<CartModel>) => void;
+  checkout?: boolean;
 }
 
-const Cart = ({ cart, setCart }: Props) => {
+const Cart = ({ cart, setCart, checkout }: Props) => {
   const [subtotal, setSubtotal] = useState<string>("0.00");
   const [shipping, setShipping] = useState<string>("0.00");
 
@@ -76,9 +78,10 @@ const Cart = ({ cart, setCart }: Props) => {
           <ProductPrice price={getTotal()} className="cart__summaryValue" />
         </li>
       </ul>
-      <button className="cart__checkoutBtn" type="button">
+
+      <Link className="cart__checkoutBtn" to="/checkout">
         Checkout
-      </button>
+      </Link>
     </div>
   );
 };
