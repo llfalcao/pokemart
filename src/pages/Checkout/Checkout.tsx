@@ -2,12 +2,17 @@ import CartModel from "../../typings/Cart";
 import CartItem from "../../components/CartItem/CartItem";
 import CartSummary from "../../components/CartSummary/CartSummary";
 import pokeball from "../../assets/images/pokeball.png";
+import { useState } from "react";
+import PurchaseModal from "../../components/PurchaseModal/PurchaseModal";
 
 interface Props {
   cart: CartModel;
 }
 
 const Checkout = ({ cart }: Props) => {
+  const [success, setSuccess] = useState<boolean>(false);
+
+  console.log("# su", success);
   return (
     <div className="checkout">
       <h1 className="checkout__title">Checkout</h1>
@@ -32,11 +37,17 @@ const Checkout = ({ cart }: Props) => {
               </span>
             </p>
           </div>
-          <button className="checkout__placeOrderBtn" type="button">
+          <button
+            className="checkout__placeOrderBtn"
+            type="button"
+            onClick={() => setSuccess(true)}
+          >
             Place Order
           </button>
         </div>
       </div>
+
+      {success && <PurchaseModal />}
     </div>
   );
 };
