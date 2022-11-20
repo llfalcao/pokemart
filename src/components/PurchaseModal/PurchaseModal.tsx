@@ -30,7 +30,7 @@ const PurchaseModal = () => {
           <>
             <h2>Thank you!</h2>
             <p>Your order has been registered.</p>
-            <Link to="/">Back to Home</Link>
+            <Link to="/pokemart">Back to Home</Link>
           </>
         )}
       </div>
