@@ -24,7 +24,7 @@ const Header = ({ search, onChange, cartItems, submit }: Props) => {
 
   return (
     <header className="header">
-      <Link to="/" className="header__logo">
+      <Link to="/pokemart" className="header__logo">
         <img src="/logo.webp" alt="Logo" width={32} height={32} />
         <p>PokéMart</p>
       </Link>
