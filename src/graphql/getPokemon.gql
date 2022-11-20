@@ -2,8 +2,14 @@ query getPokemonList(
   $limit: Int
   $order_by: [pokemon_v2_pokemon_order_by!]
   $where: pokemon_v2_pokemon_bool_exp
+  $offset: Int
 ) {
-  pokemon_v2_pokemon(limit: $limit, order_by: $order_by, where: $where) {
+  pokemon_v2_pokemon(
+    limit: $limit
+    order_by: $order_by
+    where: $where
+    offset: $offset
+  ) {
     id
     name
     pokemon_v2_pokemonsprites {
