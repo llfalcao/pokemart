@@ -47,6 +47,7 @@ const Shelf = ({ quantity = 2, query }: Props) => {
       </ul>
       <button
         className="loadMore"
+        aria-label="Load More"
         type="button"
         onClick={() =>
           fetchMore({
