@@ -1,5 +1,10 @@
 import { useEffect, useState } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Navigate,
+  Route,
+  Routes,
+} from "react-router-dom";
 
 import CartModel from "./typings/Cart";
 import Header from "./components/Header/Header";
@@ -48,10 +53,11 @@ const App = () => {
             submit={handleSearchSubmit}
           />
           <Routes>
-            <Route path="/">
+            <Route path="/pokemart">
               <Route index element={<Home query={query} cart={cart} />} />
               <Route path="checkout" element={<Checkout cart={cart} />} />
             </Route>
+            <Route path="*" element={<Navigate to="/pokemart" replace />} />
           </Routes>
         </Router>
       </div>
