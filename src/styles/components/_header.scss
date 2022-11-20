@@ -48,7 +48,8 @@
 
     input {
       width: 50vw;
-      padding: 12px;
+      height: 45px;
+      padding: 0 12px;
       outline: none;
       border: none;
       border-radius: 5px 0 0 5px;
@@ -60,7 +61,8 @@
     }
 
     button {
-      padding: 9px;
+      height: 45px;
+      padding: 0 12px;
       border-radius: 0 5px 5px 0;
       background: #0095ff;
     }
