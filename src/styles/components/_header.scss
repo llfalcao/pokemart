@@ -86,6 +86,6 @@
 .header__cartAmount {
   font-size: 12px;
   position: absolute;
-  transform: scaleY(0.9);
-  left: 8px;
+  transform: scaleY(0.9) translateX(-50%);
+  left: 44.5%;
 }
