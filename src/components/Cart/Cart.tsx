@@ -10,7 +10,7 @@ interface Props {
 }
 
 const Cart = ({ cart }: Props) => {
-  const [width, setWidth] = useState(window.innerWidth);
+  const [width, setWidth] = useState<number>(window.innerWidth);
 
   useEffect(() => {
     const handleResize = () => {
@@ -24,9 +24,11 @@ const Cart = ({ cart }: Props) => {
     <div className={`cart ${width < 1060 ? "cart--hidden" : ""}`}>
       <h3 className="cart__title">PokéBag</h3>
       <ul className="cart__list">
-        {cart.items?.map((item) => (
-          <CartItem key={item.id} pokemon={item} />
-        ))}
+        {cart.items.length > 0 ? (
+          cart.items?.map((item) => <CartItem key={item.id} pokemon={item} />)
+        ) : (
+          <p className="cart__empty">Your cart is empty!</p>
+        )}
       </ul>
       <CartSummary cart={cart} />
       <Link className="cart__checkoutBtn" to="/checkout">

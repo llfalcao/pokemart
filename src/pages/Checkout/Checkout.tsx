@@ -12,15 +12,16 @@ interface Props {
 const Checkout = ({ cart }: Props) => {
   const [success, setSuccess] = useState<boolean>(false);
 
-  console.log("# su", success);
   return (
     <div className="checkout">
       <h1 className="checkout__title">Checkout</h1>
       <div className="checkout__container">
         <ul className="cart__list">
-          {cart.items?.map((item) => (
-            <CartItem key={item.id} pokemon={item} />
-          ))}
+          {cart.items.length > 0 ? (
+            cart.items?.map((item) => <CartItem key={item.id} pokemon={item} />)
+          ) : (
+            <p className="cart__empty">Your cart is empty!</p>
+          )}
         </ul>
         <div className="checkout__orderDetails">
           <CartSummary cart={cart} />
@@ -40,7 +41,7 @@ const Checkout = ({ cart }: Props) => {
           <button
             className="checkout__placeOrderBtn"
             type="button"
-            onClick={() => setSuccess(true)}
+            onClick={() => cart.items.length > 0 && setSuccess(true)}
           >
             Place Order
           </button>

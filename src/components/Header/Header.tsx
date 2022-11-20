@@ -1,14 +1,17 @@
 import { ReactComponent as Search } from "../../assets/icons/Search.svg";
 import { ReactComponent as Bag } from "../../assets/icons/Bag.svg";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
   search?: string;
   onChange?: React.ChangeEventHandler<HTMLInputElement>;
   cartItems: number;
-  submit?: React.FormEventHandler<HTMLFormElement>;
+  submit: React.FormEventHandler<HTMLFormElement>;
 }
 
 const Header = ({ search, onChange, cartItems, submit }: Props) => {
+  const navigate = useNavigate();
+
   const toggleCart = () => {
     const cart = document.querySelector(".cart");
 
@@ -25,7 +28,13 @@ const Header = ({ search, onChange, cartItems, submit }: Props) => {
         <img src="/logo.webp" alt="Logo" width={32} height={32} />
         <p>PokéMart</p>
       </div>
-      <form className="search" onSubmit={submit}>
+      <form
+        className="search"
+        onSubmit={(event) => {
+          submit(event);
+          navigate("/");
+        }}
+      >
         <fieldset>
           <input
             type="search"

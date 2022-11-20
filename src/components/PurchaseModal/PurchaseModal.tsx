@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 import loadingImg from "../../assets/images/loading.gif";
 
 const PurchaseModal = () => {
-  const [hidden, setHidden] = useState(false);
-  const [loading, setLoading] = useState(true);
+  const [hidden, setHidden] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     setTimeout(() => {
@@ -18,7 +18,7 @@ const PurchaseModal = () => {
 
   return (
     <>
-      <div className="overlay" onClick={() => setHidden(true)} />
+      <div className="overlay" onClick={() => !loading && setHidden(true)} />
       <div className="purchase">
         {loading ? (
           <>

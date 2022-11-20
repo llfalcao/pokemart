@@ -39,14 +39,14 @@ const App = () => {
 
   return (
     <>
-      <Header
-        search={search}
-        onChange={handleSearchChange}
-        cartItems={cart.items.length}
-        submit={handleSearchSubmit}
-      />
       <div className="App">
         <Router>
+          <Header
+            search={search}
+            onChange={handleSearchChange}
+            cartItems={cart.items.length}
+            submit={handleSearchSubmit}
+          />
           <Routes>
             <Route path="/">
               <Route index element={<Home query={query} cart={cart} />} />
