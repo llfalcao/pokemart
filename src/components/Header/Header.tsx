@@ -1,6 +1,6 @@
 import { ReactComponent as Search } from "../../assets/icons/Search.svg";
 import { ReactComponent as Bag } from "../../assets/icons/Bag.svg";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 interface Props {
   search?: string;
@@ -24,10 +24,10 @@ const Header = ({ search, onChange, cartItems, submit }: Props) => {
 
   return (
     <header className="header">
-      <div className="header__logo">
+      <Link to="/" className="header__logo">
         <img src="/logo.webp" alt="Logo" width={32} height={32} />
         <p>PokéMart</p>
-      </div>
+      </Link>
       <form
         className="search"
         onSubmit={(event) => {
