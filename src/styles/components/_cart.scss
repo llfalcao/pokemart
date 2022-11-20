@@ -12,7 +12,10 @@
   transition: 0.2s ease-out;
 
   @media (max-width: 1060px) {
-    position: absolute;
+    position: fixed;
+    top: 120px;
+    height: calc(100vh - 120px);
+    box-shadow: 0 -2px 4px 2px rgba(0, 0, 0, 0.229);
   }
 }
 
