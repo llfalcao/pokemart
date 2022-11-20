@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import CartModel from "../../typings/Cart";
@@ -9,8 +10,18 @@ interface Props {
 }
 
 const Cart = ({ cart }: Props) => {
+  const [width, setWidth] = useState(window.innerWidth);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWidth(window.innerWidth);
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
-    <div className="cart">
+    <div className={`cart ${width < 1060 ? "cart--hidden" : ""}`}>
       <h3 className="cart__title">PokéBag</h3>
       <ul className="cart__list">
         {cart.items?.map((item) => (
@@ -18,7 +29,6 @@ const Cart = ({ cart }: Props) => {
         ))}
       </ul>
       <CartSummary cart={cart} />
-
       <Link className="cart__checkoutBtn" to="/checkout">
         Checkout
       </Link>

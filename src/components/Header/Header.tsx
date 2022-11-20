@@ -9,6 +9,16 @@ interface Props {
 }
 
 const Header = ({ search, onChange, cartItems, submit }: Props) => {
+  const toggleCart = () => {
+    const cart = document.querySelector(".cart");
+
+    if (cart?.classList.contains("cart--hidden")) {
+      cart.classList.remove("cart--hidden");
+    } else {
+      cart?.classList.add("cart--hidden");
+    }
+  };
+
   return (
     <header className="header">
       <div className="header__logo">
@@ -29,10 +39,15 @@ const Header = ({ search, onChange, cartItems, submit }: Props) => {
           </button>
         </fieldset>
       </form>
-      <div className="header__cart">
+      <button
+        type="button"
+        aria-label="Minicart"
+        className="header__cart"
+        onClick={toggleCart}
+      >
         <Bag />
         <span className="header__cartAmount">{cartItems ?? 0}</span>
-      </div>
+      </button>
     </header>
   );
 };
