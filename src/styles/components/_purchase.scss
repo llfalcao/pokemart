@@ -1,0 +1,40 @@
+.overlay {
+  background: rgba(#000, 0.2);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+.purchase {
+  background: azure;
+  box-shadow: 0 2px 3px 1px #00000021;
+  padding: 20px;
+  border-radius: 10px;
+  position: fixed;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  transition: 1s;
+
+  h2 {
+    text-align: center;
+  }
+
+  p {
+    margin: 10px auto;
+    text-align: center;
+    width: max-content;
+  }
+
+  a {
+    background: #0095ff;
+    color: #fff;
+    padding: 8px 15px;
+    border-radius: 5px;
+    display: block;
+    width: max-content;
+    margin: 15px auto 0;
+  }
+}

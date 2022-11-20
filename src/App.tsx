@@ -1,26 +1,68 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
+import {
+  BrowserRouter as Router,
+  Navigate,
+  Route,
+  Routes,
+} from "react-router-dom";
 
-function App() {
+import CartModel from "./typings/Cart";
+import Header from "./components/Header/Header";
+import Home from "./pages/Home/Home";
+import Checkout from "./pages/Checkout/Checkout";
+
+const App = () => {
+  const [search, setSearch] = useState<string>("");
+  const [query, setQuery] = useState<string>("");
+  const [cart, setCart] = useState<CartModel>({ items: [] });
+
+  // Handle cart items
+  useEffect(() => {
+    const loadCart = () => {
+      const cartObject: CartModel = JSON.parse(
+        localStorage.getItem("cart") ?? '{"items": []}',
+      );
+
+      setCart(cartObject);
+    };
+
+    loadCart();
+    window.addEventListener("storage", loadCart);
+    return () => window.removeEventListener("storage", loadCart);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearch(event.target.value);
+  };
+
+  const handleSearchSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (!search) return;
+    setQuery(search);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <div className="App">
+        <Router>
+          <Header
+            search={search}
+            onChange={handleSearchChange}
+            cartItems={cart.items.length}
+            submit={handleSearchSubmit}
+          />
+          <Routes>
+            <Route path="/pokemart">
+              <Route index element={<Home query={query} cart={cart} />} />
+              <Route path="checkout" element={<Checkout cart={cart} />} />
+            </Route>
+            <Route path="*" element={<Navigate to="/pokemart" replace />} />
+          </Routes>
+        </Router>
+      </div>
+    </>
   );
-}
+};
 
 export default App;
