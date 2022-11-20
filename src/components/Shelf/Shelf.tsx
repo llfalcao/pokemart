@@ -3,6 +3,7 @@ import { loader } from "graphql.macro";
 
 import Pokemon from "../../typings/Pokemon";
 import ShelfItem from "../ShelfItem/ShelfItem";
+import loadingImg from "../../assets/images/loading.gif";
 
 interface Props {
   quantity?: number;
@@ -18,7 +19,15 @@ const Shelf = ({ quantity = 2, query }: Props) => {
     },
   });
 
-  if (loading || error) return <h1>Loading...</h1>;
+  if (loading || error) {
+    return (
+      <div className="shelf">
+        <div className="loading">
+          <img src={loadingImg} alt="Loading..." />
+        </div>
+      </div>
+    );
+  }
 
   return (
     <ul className="shelf">
