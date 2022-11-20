@@ -1,5 +1,9 @@
 .checkout {
-  margin: 16px;
+  margin: auto;
+
+  @media (max-width: 920px) {
+    margin: 16px;
+  }
 
   @media (max-width: 600px) {
     margin: 10px;
