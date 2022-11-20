@@ -12,19 +12,16 @@ const CartSummary = ({ cart }: Props) => {
 
   // Handle cart summary
   useEffect(() => {
-    setSubtotal(
-      cart.items
-        .reduce(
-          (sum, current) => sum + parseFloat(current.price) * current.quantity,
-          0,
-        )
-        .toFixed(2),
+    const productSum = cart.items.reduce(
+      (sum, item) => sum + parseFloat(item.price) * item.quantity,
+      0,
     );
+    setSubtotal(productSum.toFixed(2));
 
     if (cart.items.length === 0) {
       setShipping("0.00");
     } else {
-      setShipping((Math.random() * 100).toFixed(2));
+      setShipping((productSum * 0.01).toFixed(2));
     }
   }, [cart]);
 
