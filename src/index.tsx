@@ -12,7 +12,7 @@ const client = new ApolloClient({
       Query: {
         fields: {
           pokemon_v2_pokemon: {
-            keyArgs: false,
+            keyArgs: ["where"],
             merge(existing = [], incoming) {
               return [...existing, ...incoming];
             },
