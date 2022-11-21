@@ -21,6 +21,9 @@ const client = new ApolloClient({
       },
     },
   }),
+  headers: {
+    "Access-Control-Allow-Origin": "*",
+  },
 });
 
 const root = ReactDOM.createRoot(
