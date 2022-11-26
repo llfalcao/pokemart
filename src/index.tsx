@@ -1,12 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
+import { ApolloClient, InMemoryCache, ApolloProvider, HttpLink } from "@apollo/client";
 
 import App from "./App";
 import "./styles/index.scss";
 
 const client = new ApolloClient({
-  uri: "https://beta.pokeapi.co/graphql/v1beta",
+  uri: "https://cors-everywhere.herokuapp.com/https://beta.pokeapi.co/graphql/v1beta",
   headers: {
     "Access-Control-Allow-Origin": "*",
   },
