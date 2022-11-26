@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/pokemart/static/css/main.a5340dba.css",
-    "main.js": "/pokemart/static/js/main.3e01e2af.js",
+    "main.js": "/pokemart/static/js/main.1805e98e.js",
     "static/media/loading.gif": "/pokemart/static/media/loading.59655e146c0ae543f34c.gif",
     "index.html": "/pokemart/index.html",
     "static/media/Close.svg": "/pokemart/static/media/Close.8718078eb9ac0b9039b90967f05715ba.svg",
     "static/media/Bag.svg": "/pokemart/static/media/Bag.104ab88946d5390338360f3f7f245237.svg",
     "static/media/Search.svg": "/pokemart/static/media/Search.8b758ba713439bf615d0fce1039f266d.svg",
     "main.a5340dba.css.map": "/pokemart/static/css/main.a5340dba.css.map",
-    "main.3e01e2af.js.map": "/pokemart/static/js/main.3e01e2af.js.map"
+    "main.1805e98e.js.map": "/pokemart/static/js/main.1805e98e.js.map"
   },
   "entrypoints": [
     "static/css/main.a5340dba.css",
-    "static/js/main.3e01e2af.js"
+    "static/js/main.1805e98e.js"
   ]
 }
