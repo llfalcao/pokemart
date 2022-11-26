@@ -7,6 +7,9 @@ import "./styles/index.scss";
 
 const client = new ApolloClient({
   uri: "https://beta.pokeapi.co/graphql/v1beta",
+  headers: {
+    "Access-Control-Allow-Headers": "*",
+  },
   cache: new InMemoryCache({
     typePolicies: {
       Query: {
