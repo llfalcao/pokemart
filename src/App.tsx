@@ -53,11 +53,11 @@ const App = () => {
             submit={handleSearchSubmit}
           />
           <Routes>
-            <Route path="/pokemart">
+            <Route path="/">
               <Route index element={<Home query={query} cart={cart} />} />
               <Route path="checkout" element={<Checkout cart={cart} />} />
             </Route>
-            <Route path="*" element={<Navigate to="/pokemart" replace />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
         </Router>
       </div>

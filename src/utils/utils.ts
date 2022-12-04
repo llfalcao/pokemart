@@ -12,7 +12,7 @@ export const getImages = (spriteArray: Sprite[]) => {
   const images = JSON.parse(spriteArray[0].sprites);
   const fallback =
     images.other["official-artwork"].front_default ??
-    "/pokemart/unknown-pokemon.webp";
+    "/unknown-pokemon.webp";
   const defaultImage = images.other.home.front_default ?? fallback;
   const hoverImage = images.other.home.front_shiny ?? fallback;
 

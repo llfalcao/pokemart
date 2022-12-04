@@ -26,7 +26,7 @@ const ProductImage = ({ sprites, alt, className }: Props) => {
         onMouseLeave={(event) => (event.currentTarget.src = defaultImage)}
         onError={(event) => {
           event.currentTarget.onerror = null;
-          event.currentTarget.src = "/pokemart/unknown-pokemon.webp";
+          event.currentTarget.src = "/unknown-pokemon.webp";
         }}
       />
     </div>
