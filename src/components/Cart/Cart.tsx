@@ -31,7 +31,7 @@ const Cart = ({ cart }: Props) => {
         )}
       </ul>
       <CartSummary cart={cart} />
-      <Link className="cart__checkoutBtn" to="/pokemart/checkout">
+      <Link className="cart__checkoutBtn" to="/checkout">
         Checkout
       </Link>
     </div>
