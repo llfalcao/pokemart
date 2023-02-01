@@ -40,8 +40,30 @@
   }
 }
 
+.product__imageWrapper {
+  position: relative;
+  width: 135px;
+  height: 135px;
+
+  &:hover {
+    .product__image:first-child {
+      opacity: 0;
+    }
+    .product__image:nth-child(2) {
+      opacity: 1;
+    }
+  }
+}
+
 .product__image {
   border-radius: 4px;
+  position: absolute;
+  transition: 0.4s;
+}
+
+.product__image:nth-child(2) {
+  opacity: 0;
+  transition: 0.3s;
 }
 
 .product__name,
