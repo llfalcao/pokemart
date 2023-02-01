@@ -62,9 +62,31 @@
   gap: 5px;
 }
 
+.cartItem__imageWrapper {
+  position: relative;
+  width: 70px;
+  height: 70px;
+
+  &:hover {
+    .cartItem__image:first-child {
+      opacity: 0;
+    }
+    .cartItem__image:nth-child(2) {
+      opacity: 1;
+    }
+  }
+}
+
 .cartItem__image {
   width: 70px;
   height: 70px;
+  position: absolute;
+  transition: 0.4s;
+}
+
+.cartItem__image:nth-child(2) {
+  opacity: 0;
+  transition: 0.3s;
 }
 
 .cartItem__quantitySelector {
