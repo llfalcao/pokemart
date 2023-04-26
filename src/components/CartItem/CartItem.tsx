@@ -82,6 +82,7 @@ const CartItem = ({ pokemon }: Props) => {
       <button
         className="cartItem__removeBtn"
         type="button"
+        aria-label={`Discard ${name}`}
         onClick={removeItem}
       >
         <Close />
