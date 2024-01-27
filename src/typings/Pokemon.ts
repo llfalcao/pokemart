@@ -1,5 +1,19 @@
 export interface Sprite {
-  sprites: string;
+  sprites: {
+    other: {
+      home: SpriteVariation;
+      dream_world: SpriteVariation;
+      "official-artwork": SpriteVariation;
+      showdown: SpriteVariation;
+    };
+  };
+}
+
+interface SpriteVariation {
+  front_default: string | null;
+  front_female: string | null;
+  front_shiny: string | null;
+  front_shiny_female: string | null;
 }
 
 export interface Stat {
